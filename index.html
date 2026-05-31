@@ -1,0 +1,212 @@
+<html>
+    <head>
+        <title>Keyboard ≠ Typewriter</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <section class="hero">
+            <div class="hero-stuff">
+                <h1>
+                    A Keyboard is Not a Typewriter.
+                </h1>
+                <p>
+                    An alternative outlook towards keyboards as potential dynamic interaction surfaces rather than simple character input devices.
+                </p>
+            </div>
+        </section>
+        <div class="hazard-barrier">
+    <div class="tape-track">
+        <div class="tape-text">
+            SCROLL DOWN OR PRESS SPACE // SCROLL DOWN OR PRESS SPACE // SCROLL DOWN OR PRESS SPACE // SCROLL DOWN OR PRESS SPACE // SCROLL DOWN OR PRESS SPACE // 
+        </div>
+        <div class="tape-text">
+            SCROLL DOWN OR PRESS SPACE // SCROLL DOWN OR PRESS SPACE // SCROLL DOWN OR PRESS SPACE // SCROLL DOWN OR PRESS SPACE // SCROLL DOWN OR PRESS SPACE // 
+        </div>
+    </div>
+</div>
+        <section class="demo">
+    <h3>A keyboard is a grid.</h3>
+    <h2>Huzzah! A keyboard can be a touchboard.</h2>
+    <p>Demo: Hold down any key and glide to an adjacent key to scroll.</p>
+
+    <div class="sandbox-controls">
+        <button id="toggle-inertia" class="control-btn">Inertia: OFF</button>
+        <button id="toggle-audio" class="control-btn">Spatial Synth: OFF</button>
+    </div>
+
+    <div class="audio-box-container">
+        <div id="audio-visualizer"></div>
+    </div>
+</section>
+<div class="hazard-barrier">
+    <div class="tape-track">
+        <div class="tape-text">
+            SCROLL DOWN OR PRESS SPACE // SCROLL DOWN OR PRESS SPACE // SCROLL DOWN OR PRESS SPACE // SCROLL DOWN OR PRESS SPACE // SCROLL DOWN OR PRESS SPACE // 
+        </div>
+        <div class="tape-text">
+            SCROLL DOWN OR PRESS SPACE // SCROLL DOWN OR PRESS SPACE // SCROLL DOWN OR PRESS SPACE // SCROLL DOWN OR PRESS SPACE // SCROLL DOWN OR PRESS SPACE // 
+        </div>
+    </div>
+</div>
+<section class="hardware-mapping">
+    <h3>Row Mapping</h3>
+    <h2>Direct Component Control</h2>
+    <p>Bypass the mouse cursor. Hardware rows map directly to interface components.</p>
+    
+    <div class="interface-container">
+        <div class="control-card">
+            <span class="row-badge">Keys can be toggles. Demo for top row keys Q-P.</span>
+            <div class="toggle-grid">
+                <div class="toggle-item" data-control="KeyQ"><span>Q</span><div class="switch"></div></div>
+                <div class="toggle-item" data-control="KeyW"><span>W</span><div class="switch"></div></div>
+                <div class="toggle-item" data-control="KeyE"><span>E</span><div class="switch"></div></div>
+                <div class="toggle-item" data-control="KeyR"><span>R</span><div class="switch"></div></div>
+                <div class="toggle-item" data-control="KeyT"><span>T</span><div class="switch"></div></div>
+                <div class="toggle-item" data-control="KeyY"><span>Y</span><div class="switch"></div></div>
+                <div class="toggle-item" data-control="KeyU"><span>U</span><div class="switch"></div></div>
+                <div class="toggle-item" data-control="KeyI"><span>I</span><div class="switch"></div></div>
+                <div class="toggle-item" data-control="KeyO"><span>O</span><div class="switch"></div></div>
+                <div class="toggle-item" data-control="KeyP"><span>P</span><div class="switch"></div></div>
+            </div>
+        </div>
+        <div class="control-card">
+    <span class="row-badge">Keys can be dials. Demo for middle row A-L.</span>
+    <div class="dial-wrapper">
+    <div id="hardware-dial" class="dial">
+        <div class="dial-indicator"></div>
+    </div>
+    <div class="dial-value"><span id="dial-degrees">0</span>°</div>
+    <p class="dial-instruction">
+        Play with the middle row to rotate the dial.
+    </p>
+</div>
+</div>
+        <div class="control-card">
+            <span class="row-badge">Keys can be sliders. Demo for bottom row Z-M.</span>
+            <div class="slider-wrapper">
+                <div class="slider-track">
+                    <div id="hardware-slider-fill" class="slider-fill"></div>
+                </div>
+                <div class="slider-labels">
+                    <span>Z (0%)</span>
+                    <span>X</span>
+                    <span>C</span>
+                    <span>V</span>
+                    <span>B</span>
+                    <span>N</span>
+                    <span>M (100%)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        <div id="keyboard-overlay">
+    <div class="keyboard">
+
+        <div class="keyboard-row">
+            <div class="key" data-key="KeyQ">Q</div>
+            <div class="key" data-key="KeyW">W</div>
+            <div class="key" data-key="KeyE">E</div>
+            <div class="key" data-key="KeyR">R</div>
+            <div class="key" data-key="KeyT">T</div>
+            <div class="key" data-key="KeyY">Y</div>
+            <div class="key" data-key="KeyU">U</div>
+            <div class="key" data-key="KeyI">I</div>
+            <div class="key" data-key="KeyO">O</div>
+            <div class="key" data-key="KeyP">P</div>
+        </div>
+
+        <div class="keyboard-row row-offset-1">
+            <div class="key" data-key="KeyA">A</div>
+            <div class="key" data-key="KeyS">S</div>
+            <div class="key" data-key="KeyD">D</div>
+            <div class="key" data-key="KeyF">F</div>
+            <div class="key" data-key="KeyG">G</div>
+            <div class="key" data-key="KeyH">H</div>
+            <div class="key" data-key="KeyJ">J</div>
+            <div class="key" data-key="KeyK">K</div>
+            <div class="key" data-key="KeyL">L</div>
+        </div>
+
+        <div class="keyboard-row row-offset-2">
+            <div class="key" data-key="KeyZ">Z</div>
+            <div class="key" data-key="KeyX">X</div>
+            <div class="key" data-key="KeyC">C</div>
+            <div class="key" data-key="KeyV">V</div>
+            <div class="key" data-key="KeyB">B</div>
+            <div class="key" data-key="KeyN">N</div>
+            <div class="key" data-key="KeyM">M</div>
+        </div>
+
+    </div>
+</div>
+        <script src="main.js"></script>
+        <footer style="
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 6rem 2rem 3rem 2rem;
+    background: #000000;
+    font-family: 'Inter', system-ui, sans-serif;
+">
+    <div style="
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.02) 100%);
+        margin-bottom: 2rem;
+    "></div>
+
+    <div style="
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 2rem;
+    ">
+        <div style="max-width: 500px;">
+            <p style="
+                font-size: 0.85rem;
+                color: #555555;
+                line-height: 1.6;
+                margin: 0;
+            ">
+                <span style="color: #888888; font-weight: 600; display: block; margin-bottom: 0.25rem;">A concept by Sannidhya Sharma (SleeperOfSaturn)</span>
+                Architected and directed as a proof-of-concept. Exploring the intersection of tactile hardware geometry, fluid browser physics, and rapid intent translation.
+            </p>
+        </div>
+
+        <div style="text-align: right; min-width: 150px;">
+            <a href="https://github.com/SleeperOfSaturn/Touchboard" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               class="footer-github-link"
+               style="
+                   font-size: 0.9rem;
+                   font-weight: 700;
+                   color: #ffffff;
+                   text-decoration: none;
+                   display: inline-flex;
+                   align-items: center;
+                   gap: 0.5rem;
+                   border: 1px solid rgba(255,255,255,0.1);
+                   padding: 0.5rem 1rem;
+                   border-radius: 8px;
+                   background: rgba(255,255,255,0.02);
+                   transition: all 0.2s ease;
+               ">
+                <span>View Source on GitHub</span>
+                <span style="font-size: 0.75rem; color: #666;">↗</span>
+            </a>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .footer-github-link:hover {
+        background: #ffffff !important;
+        color: #000000 !important;
+        border-color: #ffffff !important;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+    }
+</style>
+    </body>
+</html>

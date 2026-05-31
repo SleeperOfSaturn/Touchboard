@@ -1,0 +1,505 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background: #000000;
+}
+
+body {
+    min-height: 100vh;
+    color: #f5f5f5;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+.hero {
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    position: relative;
+}
+
+.hero-stuff {
+    width: 100%;
+    max-width: 1000px;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 4rem;
+}
+
+.hero h1 {
+    font-size: clamp(3.5rem, 9vw, 7.5rem);
+    font-weight: 900;
+    background: linear-gradient(180deg, #ffffff 40%, #888888 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: left;
+    margin-top: auto;
+}
+
+.hero p {
+    max-width: 640px;
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    color: #a0a0a0;
+    font-weight: 400;
+    line-height: 1.5;
+    border-left: 2px solid #333;
+    padding-left: 1.5rem;
+}
+
+/* --- Demo Section --- */
+.demo {
+    min-height: 80vh;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 8rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.demo h3 {
+    color: #666;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+}
+
+.demo h4 {
+    color: #444;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 500;
+}
+
+.demo h2 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    background: linear-gradient(90deg, #ffffff, #a0a0a0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0.5rem 0;
+}
+
+.demo p {
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    color: #888;
+    max-width: 700px;
+}
+
+.demo p:last-of-type {
+    color: #ffffff;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    border: 1px dashed #333;
+    display: inline-block;
+    align-self: flex-start;
+    margin-top: 1.5rem;
+}
+
+#keyboard-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 100;
+    transition: opacity 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#keyboard-overlay.visible {
+    opacity: 1;
+}
+
+.keyboard {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 2.5rem;
+    border-radius: 32px;
+    background: rgba(15, 15, 15, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(30px);
+    box-shadow: 
+        0 4px 30px rgba(0, 0, 0, 0.8),
+        0 0 80px rgba(255, 255, 255, 0.02) inset;
+    transform: scale(0.95) translateY(20px);
+    transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#keyboard-overlay.visible .keyboard {
+    transform: scale(1) translateY(0);
+}
+
+.keyboard-row {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.row-offset-1 {
+    margin-left: 1.75rem;
+}
+
+.row-offset-2 {
+    margin-left: 3.5rem;
+}
+
+.key {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: rgba(40, 40, 40, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: #888;
+    font-size: 1.1rem;
+    font-weight: 700;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    transition:
+        transform 100ms cubic-bezier(0.16, 1, 0.3, 1),
+        background-color 150ms ease,
+        color 150ms ease,
+        border-color 150ms ease,
+        box-shadow 150ms ease;
+}
+
+.key.active {
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+    transform: scale(0.95);
+    box-shadow: 
+        0 0 25px rgba(255, 255, 255, 0.4),
+        0 0 60px rgba(255, 255, 255, 0.2);
+}
+
+.sandbox-controls {
+    display: flex;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.control-btn {
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    border: 1px solid #333;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: all 0.2s ease;
+}
+
+.control-btn.enabled {
+    background: #fff;
+    color: #000;
+    border-color: #fff;
+    box-shadow: 0 0 15px rgba(255,255,255,0.3);
+}
+
+.audio-box-container {
+    width: 100%;
+    height: 120px;
+    background: #111;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #222;
+    position: relative;
+}
+
+#audio-visualizer {
+    width: 4px;
+    height: 40%;
+    background: #ffffff;
+    border-radius: 99px; 
+    
+    box-shadow: 0 0 20px #ffffff;
+    transition: transform 100ms ease-out, width 100ms ease-out, background-color 200ms ease;
+    transform: scaleX(1);
+}
+
+.audio-box-container.playing #audio-visualizer {
+    width: 80%;
+    background: linear-gradient(90deg, #333, #fff, #333);
+}
+.hardware-mapping {
+    min-height: 100vh;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 8rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.hardware-mapping h3 {
+    color: #666;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+}
+
+.hardware-mapping h2 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    background: linear-gradient(90deg, #ffffff, #a0a0a0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hardware-mapping p {
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    color: #888;
+    max-width: 700px;
+}
+
+.interface-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.control-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.row-badge {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #666;
+}
+
+.toggle-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 0.75rem;
+}
+
+.toggle-item {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 12px;
+    padding: 1rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 700;
+    color: #444;
+    transition: all 0.2s ease;
+}
+
+.toggle-item span {
+    font-size: 0.9rem;
+}
+
+.switch {
+    width: 24px;
+    height: 12px;
+    background: #222;
+    border-radius: 99px;
+    position: relative;
+    transition: background 0.2s ease;
+}
+
+.switch::before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #555;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toggle-item.toggled {
+    color: #fff;
+    border-color: rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.05);
+}
+
+.toggle-item.toggled .switch {
+    background: #fff;
+}
+
+.toggle-item.toggled .switch::before {
+    left: 14px;
+    background: #000;
+}
+
+.slider-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.slider-track {
+    width: 100%;
+    height: 12px;
+    background: #111;
+    border-radius: 99px;
+    border: 1px solid rgba(255,255,255,0.05);
+    overflow: hidden;
+}
+
+.slider-fill {
+    width: 0%;
+    height: 100%;
+    background: #fff;
+    box-shadow: 0 0 15px rgba(255,255,255,0.5);
+    transition: width 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slider-labels {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0.5rem;
+    color: #555;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.slider-labels .active-label {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+.dial-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.dial {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #111;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    transition: transform 50ms linear; 
+}
+
+.dial-indicator {
+    width: 6px;
+    height: 20px;
+    background: #fff;
+    border-radius: 99px;
+    position: absolute;
+    top: 6px;
+    left: calc(50% - 3px);
+    box-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+.dial-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #fff;
+    font-variant-numeric: tabular-nums;
+}
+
+.hazard-barrier {
+    width: 100%;
+    overflow: hidden;
+    padding: 3.5rem 0; 
+    background: #000000;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+}
+
+.tape-track {
+    width: 100vw;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+    background: repeating-linear-gradient(
+        -45deg,
+        #ffffff,
+        #ffffff 20px,
+        #000000 20px,
+        #000000 40px
+    );
+    background-size: 56px 56px;
+    
+    border-top: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+    
+    transform: rotate(-1.2deg) scale(1.02); 
+    animation: slideStripes 4s linear infinite;
+}
+
+.tape-text {
+    font-size: 1.1rem;
+    font-weight: 900;
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #ffffff;
+    background: #000000; /* Dark canvas masking behind text blocks */
+    padding: 4px 15px;   /* Added horizontal padding to frame words over moving gaps */
+    display: inline-block;
+    
+    /* Marquee Text Loop Speed Configuration */
+    animation: marqueeLoop 20s linear infinite;
+}
+
+/* --- Combined Kinetic Keyframe Systems --- */
+
+/* 1. Moves the foreground instruction text right-to-left */
+@keyframes marqueeLoop {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-100%, 0, 0);
+    }
+}
+
+/* 2. Shifts the background slash graphics continually to simulate conveyor movement */
+@keyframes slideStripes {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 56px 0; /* Shifts precisely by its structural loop width */
+    }
+}
